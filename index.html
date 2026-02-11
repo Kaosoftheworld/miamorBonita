@@ -1,79 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Alecia</title>
-    <style>
-        /* 1. THE DARKROOM */
-        body {
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover">
+<title>For Alecia</title>
 
-        /* 2. THE CANVAS (Keeps it portrait-shaped on PC too) */
-        .portrait-wrapper {
-            width: 100%;
-            height: 100%;
-            max-width: 600px; /* Prevents stretching on big PC screens */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        /* 3. THE CARVING (The Logic) */
-        .text-carving {
-            /* ZOOM CONTROL: 'contain' ensures her WHOLE head is visible. No cropping. */
-            background: url('profile.png') no-repeat center center;
-            background-size: contain; 
-            
-            /* MAGIC INK */
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; 
-            
-            /* FILTER: Pure B&W, High Contrast like the reference */
-            filter: grayscale(100%) contrast(1.6) brightness(1.8);
-            
-            /* FONT: The "Reference" Look */
-            /* Times New Roman adds that 'newspaper art' texture */
-            font-family: 'Times New Roman', serif;
-            
-            /* SIZE: This is key! 11px makes the 'pixels' small enough to see details */
-            font-size: 11px; 
-            font-weight: bold; /* Bold makes the white parts pop more */
-            line-height: 0.9; /* Tighter lines = denser image */
-            text-align: justify;
-            word-break: break-all;
-            
-            /* FULL FRAME */
-            width: 100%;
-            height: 100%;
-            padding: 10px; /* Small padding to frame the face */
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-    </style>
+.portrait-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-carving {
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+
+    background: url('profile.png') no-repeat center center;
+    background-size: contain;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: rgba(255,255,255,0.92);
+
+    font-family: "Times New Roman", serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 0.95;
+    text-align: justify;
+    word-break: break-all;
+
+    filter: grayscale(100%) contrast(1.9) brightness(1.15);
+
+    text-shadow:
+        0 0 1px rgba(0,0,0,0.6),
+        0 0 0.8px rgba(255,255,255,0.1);
+
+    image-rendering: auto;
+    overflow: hidden;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="portrait-wrapper">
-        <div class="text-carving" id="carving-effect"></div>
-    </div>
+<div class="portrait-wrapper">
+    <div class="text-carving" id="carving"></div>
+</div>
 
-    <script>
-        const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. ";
+<script>
+const poem = `Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. 
+Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. 
+Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. 
+Tracing the lines where the light meets the dark, every soft feature, a divine little spark. `;
 
-        // Repeating 5000 times because the text is smaller now, so we need more words to fill the screen!
-        document.getElementById('carving-effect').innerText = poem.repeat(5000);
-    </script>
+document.getElementById("carving").innerText = poem.repeat(5000);
+</script>
 
 </body>
 </html>
