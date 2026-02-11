@@ -18,45 +18,47 @@
             overflow: hidden;
         }
 
-        /* 2. THE CANVAS (Keeps it portrait-shaped on PC too) */
+        /* 2. THE FRAME */
         .portrait-wrapper {
             width: 100%;
             height: 100%;
-            max-width: 600px; /* Prevents stretching on big PC screens */
+            max-width: 600px; /* Keeps it portrait-shaped on PC */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 3. THE CARVING (The Logic) */
+        /* 3. THE CARVING (Safeguarded) */
         .text-carving {
-            /* ZOOM CONTROL: 'contain' ensures her WHOLE head is visible. No cropping. */
-            background: url('profile.png') no-repeat center center;
-            background-size: contain; 
+            /* IMAGE SOURCE - Split up for safety */
+            background-image: url('profile.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; /* Forces image to fill the screen */
             
-            /* MAGIC INK */
+            /* THE MASKING MAGIC - Double enforcement */
             -webkit-background-clip: text;
             background-clip: text;
+            
+            /* TRANSPARENCY - This forces the text to disappear so the image shows through */
             color: transparent; 
+            -webkit-text-fill-color: transparent;
             
-            /* FILTER: Pure B&W, High Contrast like the reference */
-            filter: grayscale(100%) contrast(1.6) brightness(1.8);
+            /* FILTER - High Contrast B&W to match your reference */
+            filter: grayscale(100%) contrast(1.5) brightness(2.0);
             
-            /* FONT: The "Reference" Look */
-            /* Times New Roman adds that 'newspaper art' texture */
+            /* TYPOGRAPHY - The "Newspaper Art" Look */
             font-family: 'Times New Roman', serif;
-            
-            /* SIZE: This is key! 11px makes the 'pixels' small enough to see details */
             font-size: 11px; 
-            font-weight: bold; /* Bold makes the white parts pop more */
-            line-height: 0.9; /* Tighter lines = denser image */
+            font-weight: 900; 
+            line-height: 0.9; 
             text-align: justify;
             word-break: break-all;
             
-            /* FULL FRAME */
+            /* LAYOUT */
             width: 100%;
             height: 100%;
-            padding: 10px; /* Small padding to frame the face */
+            padding: 0; /* No padding so it touches the edges like the reference */
             box-sizing: border-box;
             overflow: hidden;
         }
@@ -71,8 +73,8 @@
     <script>
         const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. ";
 
-        // Repeating 5000 times because the text is smaller now, so we need more words to fill the screen!
-        document.getElementById('carving-effect').innerText = poem.repeat(5000);
+        // High repetition for dense text
+        document.getElementById('carving-effect').innerText = poem.repeat(4000);
     </script>
 
 </body>
