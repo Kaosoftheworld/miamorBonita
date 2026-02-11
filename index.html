@@ -15,39 +15,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow: hidden; /* This stops scrollbars during the zoom */
         }
 
         /* 2. THE FRAME */
         .portrait-wrapper {
             width: 100%;
             height: 100%;
-            max-width: 600px; /* Keeps it portrait-shaped on PC */
+            max-width: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 3. THE CARVING (Safeguarded) */
+        /* 3. THE CARVING */
         .text-carving {
-            /* IMAGE SOURCE - Split up for safety */
+            /* IMAGE SOURCE */
             background-image: url('profile.png');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: cover; /* Forces image to fill the screen */
+            background-size: cover; 
             
-            /* THE MASKING MAGIC - Double enforcement */
+            /* MASKING MAGIC */
             -webkit-background-clip: text;
             background-clip: text;
-            
-            /* TRANSPARENCY - This forces the text to disappear so the image shows through */
             color: transparent; 
             -webkit-text-fill-color: transparent;
             
-            /* FILTER - High Contrast B&W to match your reference */
+            /* FILTER */
             filter: grayscale(100%) contrast(1.5) brightness(2.0);
             
-            /* TYPOGRAPHY - The "Newspaper Art" Look */
+            /* TYPOGRAPHY */
             font-family: 'Times New Roman', serif;
             font-size: 11px; 
             font-weight: 900; 
@@ -58,9 +56,27 @@
             /* LAYOUT */
             width: 100%;
             height: 100%;
-            padding: 0; /* No padding so it touches the edges like the reference */
+            padding: 0;
             box-sizing: border-box;
-            overflow: hidden;
+            
+            /* THE CINEMATIC ANIMATION */
+            /* 5s duration, eases out smoothly, runs once */
+            animation: zoomOutEffect 5s ease-out forwards;
+        }
+
+        /* 4. THE ANIMATION KEYFRAMES */
+        @keyframes zoomOutEffect {
+            0% {
+                transform: scale(1.2); /* Starts zoomed in (120%) */
+                opacity: 0; /* Starts invisible */
+            }
+            20% {
+                opacity: 1; /* Fades in quickly while still zooming */
+            }
+            100% {
+                transform: scale(1); /* Ends at normal full face (100%) */
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -73,7 +89,6 @@
     <script>
         const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. ";
 
-        // High repetition for dense text
         document.getElementById('carving-effect').innerText = poem.repeat(4000);
     </script>
 
