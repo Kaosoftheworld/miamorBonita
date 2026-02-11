@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Alecia</title>
     <style>
-        /* 1. The Canvas: Black background for that deep, intimate feel */
         body {
             background-color: #000;
             margin: 0;
@@ -14,7 +13,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Arial', sans-serif; /* Cleaned up the font for a modern look */
         }
 
         .portrait-container {
@@ -23,21 +22,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 4s ease-in; /* Smooth entrance */
+            animation: fadeIn 3s ease-in;
         }
 
         .text-carving {
-            /* 2. The Source: This pulls in your photo of Alecia */
+            /* 1. The Source & Zoom Fix */
             background: url('profile.png') no-repeat center;
-            background-size: cover;
+            background-size: contain; /* This 'zooms out' to fit her whole face */
             
-            /* 3. The Magic: This 'carves' the image into the poem */
+            /* 2. The Carving Magic */
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent; 
             
-            /* Text styling to match your reference photos */
-            font-size: 11px;
+            /* 3. The B&W & Brightness Fix */
+            /* grayscale makes it B&W, brightness(4) makes her pop, contrast(1.5) makes it sharp */
+            filter: grayscale(100%) brightness(4) contrast(1.5);
+            
+            /* 4. Text Styling */
+            font-size: 15px;
             font-weight: 900;
             line-height: 0.9;
             text-align: justify;
@@ -46,12 +49,12 @@
             
             width: 100%;
             height: 100%;
-            padding: 10px;
+            padding: 25px; /* Adds space around the edges of her phone */
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.1); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -62,11 +65,11 @@
     </div>
 
     <script>
-        // The custom poem for Alecia
+        // The poem dedicated to Alecia
         const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. Alecia, it’s a beauty that speaks without making a sound, the kind of peace that is rarely found. Woven in ink and etched in the soul, the fragments of you, Alecia, that make the world whole. ";
 
-        // Fills the screen with the poem to create her face
-        document.getElementById('carving-effect').innerText = poem.repeat(800);
+        // Fills the screen with the words to 'draw' her face
+        document.getElementById('carving-effect').innerText = poem.repeat(1000);
     </script>
 
 </body>
