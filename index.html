@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Alecia</title>
     <style>
-        /* 1. THE FOUNDATION (Dark Room) */
+        /* 1. THE DARKROOM */
         body {
             background-color: #000;
             margin: 0;
@@ -16,77 +16,63 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
         }
 
-        /* 2. THE FRAME (Responsiveness) */
-        /* This box keeps the art looking like a portrait, even on PC */
-        .art-container {
-            position: relative;
+        /* 2. THE CANVAS (Keeps it portrait-shaped on PC too) */
+        .portrait-wrapper {
             width: 100%;
             height: 100%;
-            /* On PC, this limits the width so the face doesn't stretch */
-            max-width: 600px; 
+            max-width: 600px; /* Prevents stretching on big PC screens */
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 3s ease-in;
         }
 
-        /* 3. THE CARVING (The Magic) */
+        /* 3. THE CARVING (The Logic) */
         .text-carving {
-            /* ESSENTIAL: Fits the image perfectly inside the screen without cropping */
+            /* ZOOM CONTROL: 'contain' ensures her WHOLE head is visible. No cropping. */
             background: url('profile.png') no-repeat center center;
             background-size: contain; 
             
-            /* ESSENTIAL: The "Ink" Logic */
+            /* MAGIC INK */
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent; 
             
-            /* ESSENTIAL: The 'Perfect B&W' Filter */
-            /* Grayscale 100% = No color */
-            /* Contrast 1.5 = Sharp blacks and whites */
-            /* Brightness 1.8 = Makes her face shine out of the dark */
-            filter: grayscale(100%) contrast(1.5) brightness(1.8);
+            /* FILTER: Pure B&W, High Contrast like the reference */
+            filter: grayscale(100%) contrast(1.6) brightness(1.8);
             
-            /* TYPOGRAPHY: High Resolution Settings */
-            font-size: 11px; /* Smaller font = Sharper image detail */
-            font-weight: 900; /* Thick letters = More image visible */
-            line-height: 0.8; /* Tight lines = Solid looking face */
-            letter-spacing: -0.5px;
+            /* FONT: The "Reference" Look */
+            /* Times New Roman adds that 'newspaper art' texture */
+            font-family: 'Times New Roman', serif;
+            
+            /* SIZE: This is key! 11px makes the 'pixels' small enough to see details */
+            font-size: 11px; 
+            font-weight: bold; /* Bold makes the white parts pop more */
+            line-height: 0.9; /* Tighter lines = denser image */
             text-align: justify;
             word-break: break-all;
             
-            /* Filling the frame */
+            /* FULL FRAME */
             width: 100%;
             height: 100%;
-            padding: 10px;
+            padding: 10px; /* Small padding to frame the face */
             box-sizing: border-box;
-            
-            /* Prevents scrolling bars */
-            overflow: hidden; 
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; filter: blur(5px); }
-            to { opacity: 1; filter: blur(0px); }
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
 
-    <div class="art-container">
+    <div class="portrait-wrapper">
         <div class="text-carving" id="carving-effect"></div>
     </div>
 
     <script>
-        // THE POEM
-        const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. Alecia, it’s a beauty that speaks without making a sound, the kind of peace that is rarely found. Woven in ink and etched in the soul, the fragments of you, Alecia, that make the world whole. ";
+        const poem = "Alecia, in the quiet curve of a silver shore, I find the grace I was looking for. Not in the sun, but the moon’s soft glow, mapping the secrets that the shadows know. Alecia, a galaxy rests in the depth of your eyes, where ancient stars and new hopes lie. Tracing the lines where the light meets the dark, every soft feature, a divine little spark. ";
 
-        // LOGIC: Repeats enough to fill both mobile and PC screens
-        // '4000' is a safe number to ensure no empty gaps on big monitors
-        document.getElementById('carving-effect').innerText = poem.repeat(4000);
+        // Repeating 5000 times because the text is smaller now, so we need more words to fill the screen!
+        document.getElementById('carving-effect').innerText = poem.repeat(5000);
     </script>
 
 </body>
