@@ -91,6 +91,14 @@
 
         document.getElementById('carving-effect').innerText = poem.repeat(4000);
     </script>
+<audio autoplay muted id="bgMusic">
+  <source src="last night on earth.mp3" type="audio/mpeg">
+</audio>
 
+<script>
+  const music = document.getElementById("bgMusic");
+  music.currentTime = 32;
+  music.muted = false;
+</script>
 </body>
 </html>
